@@ -8,15 +8,12 @@
       "name": "Run Sandbox",
       "type": "node",
       "request": "launch",
-      "args": ["${workspaceFolder}/src/sandbox.ts"],
-      "runtimeArgs": ["--nolazy", "-r", "~/.nvm/versions/node/v8.11.2/lib/node_modules/ts-node/register"],
+      "args": ["${workspaceFolder}/sandbox.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",
       "console": "integratedTerminal",
-      "env": {
-        "DEBUG": "good:*,bad:*"
-      }
     },
     {
       "type": "node",
@@ -33,7 +30,7 @@
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "protocol": "inspector"
+      "protocol": "inspector",
   },
   ]
 }

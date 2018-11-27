@@ -2,12 +2,14 @@ export type PolynomialSolutionOptions = {
   estimate: number | 'auto',
   epsilon?: number,
   maxIterations?: number,
+  relativeEpsilon?: boolean,
 }
 
 export const DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS: PolynomialSolutionOptions = {
-  estimate: 0,
+  estimate: 'auto',
   epsilon: 1e-5,
   maxIterations: 10,
+  relativeEpsilon: false,
 }
 
 export interface IPolynomial {
@@ -24,10 +26,19 @@ export class Polynomial implements IPolynomial {
 
   protected autoEstimate (): number {
     const { length } = this.coefficients
-    const sum = this.coefficients.reduce((total, partial) => total + partial, 0)
-    const last = this.coefficients[length - 1]
 
-    return Math.pow(Math.abs(last / (sum - last)), 1 / length)
+    let positive: number = 0
+    let negative: number = 0
+
+    this.coefficients.forEach(coefficient => {
+      if (coefficient > 0) {
+        positive += coefficient
+      } else {
+        negative -= coefficient
+      }
+    })
+
+    return ((positive / negative) - 1) / length + 1
   }
   protected getDegree (): number {
     return this.coefficients.length - 1
@@ -74,7 +85,9 @@ export class Polynomial implements IPolynomial {
     options = Object.assign({}, DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS, options)
 
     const epsilon = options.epsilon!
-    const last = Math.abs(this.coefficients[this.coefficients.length - 1]) || 1
+    const last = options.relativeEpsilon
+      ? Math.abs(this.coefficients[this.coefficients.length - 1]) || 1
+      : 1
 
     let iteration: number = 0
     let solution: number = options.estimate === 'auto'

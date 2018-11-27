@@ -6,5 +6,5 @@ export function irr (
 ): number {
   const polynomial = new Polynomial(coefficients)
 
-  return polynomial.solve(options)
+  return polynomial.solve(options) - 1
 }

@@ -11,5 +11,8 @@
   },
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/*.test.ts"
+  },
+  "dependencies": {
+    "moment": "^2.22.2"
   }
 }
