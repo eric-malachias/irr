@@ -88,4 +88,10 @@ export class Line implements IPolynomial {
   public findRoot (): number {
     return -this.k / this.m
   }
+  public getK (): number {
+    return this.k
+  }
+  public getM (): number {
+    return this.m
+  }
 }
