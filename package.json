@@ -5,6 +5,7 @@
   "author": "Eric Malachias",
   "license": "MIT",
   "keywords": ["irr", "xirr", "internal", "rate", "return"],
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eric-malachias/irr.git"
