@@ -2,6 +2,7 @@ import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions } from './../root-finder
 import { RootFinderFactory } from './../root-finder/factory'
 import { IPolynomial } from './definition'
 import { Line } from './line'
+import { isValidRoot } from '../utils/is-valid-root'
 
 export class Polynomial implements IPolynomial {
   protected derivative: Polynomial | null = null
@@ -53,7 +54,7 @@ export class Polynomial implements IPolynomial {
     const root = finder.findRoot(this)
 
     if (options.fallbackMethod
-      && isNaN(root) || !isFinite(root)
+      && isValidRoot(root)
       && options.method !== options.fallbackMethod) {
       const fallbackFinder = factory.make(options.fallbackMethod!)
 

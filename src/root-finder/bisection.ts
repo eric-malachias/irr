@@ -1,5 +1,6 @@
 import { RootFinderOptions, IRootFinder } from './definition'
 import { Polynomial } from '../polynomial/polynomial'
+import { isValidRoot } from '../utils/is-valid-root'
 
 export class BisectionRootFinder implements IRootFinder {
   constructor (
@@ -28,7 +29,7 @@ export class BisectionRootFinder implements IRootFinder {
   public findRoot (polynomial: Polynomial): number {
     const upperLimit = this.findUpperLimit(polynomial)
 
-    if (isNaN(upperLimit) || !isFinite(upperLimit)) {
+    if (!isValidRoot(upperLimit)) {
       return NaN
     }
 

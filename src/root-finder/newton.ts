@@ -1,5 +1,6 @@
 import { RootFinderOptions, IRootFinder } from './definition'
 import { Polynomial } from '../polynomial/polynomial'
+import { isValidRoot } from '../utils/is-valid-root'
 
 export class NewtonRootFinder implements IRootFinder {
   constructor (
@@ -30,26 +31,26 @@ export class NewtonRootFinder implements IRootFinder {
     const maxIterations = this.options.maxIterations!
 
     let iteration: number = 0
-    let solution: number = estimate === 'auto'
+    let root: number = estimate === 'auto'
       ? this.autoEstimate(polynomial)
       : estimate!
 
     while (iteration++ < maxIterations) {
-      const calculated = polynomial.calculate(solution)
+      const calculated = polynomial.calculate(root)
 
       if (Math.abs(calculated) < epsilon) {
         break
       }
 
-      const tangent = polynomial.getTangentAt(solution)
+      const tangent = polynomial.getTangentAt(root)
 
-      solution = tangent.findRoot()
+      root = tangent.findRoot()
 
-      if (isNaN(solution) || !isFinite(solution)) {
+      if (!isValidRoot(root)) {
         break
       }
     }
 
-    return solution
+    return root
   }
 }
