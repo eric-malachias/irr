@@ -12,6 +12,7 @@
     "return"
   ],
   "main": "dist/index.js",
+ "types" : "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eric-malachias/irr.git"
