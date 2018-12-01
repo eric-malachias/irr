@@ -1,7 +1,7 @@
 import moment from 'moment'
-import { XirrInput } from './definition'
+import { XirrInput, InternalXirrInput } from './definition'
 
-export function transform (inputs: XirrInput[]) {
+export function transform (inputs: XirrInput[]): InternalXirrInput[] {
   if (inputs.length === 0) {
     return []
   }
