@@ -1,10 +1,7 @@
-import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions } from './root-finder/definition'
-import { RootFinderFactory } from './root-finder/factory'
-
-export interface IPolynomial {
-  calculate (x: number): number
-  findRoot (options?: RootFinderOptions): number
-}
+import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions } from './../root-finder/definition'
+import { RootFinderFactory } from './../root-finder/factory'
+import { IPolynomial } from './definition'
+import { Line } from './line'
 
 export class Polynomial implements IPolynomial {
   protected derivative: Polynomial | null = null
@@ -74,24 +71,5 @@ export class Polynomial implements IPolynomial {
     const k = this.calculate(x) - m * x
 
     return new Line(m, k)
-  }
-}
-export class Line implements IPolynomial {
-  constructor (
-    protected readonly m: number,
-    protected readonly k: number,
-  ) {}
-
-  public calculate (x: number): number {
-    return this.m * x + this.k
-  }
-  public findRoot (): number {
-    return -this.k / this.m
-  }
-  public getK (): number {
-    return this.k
-  }
-  public getM (): number {
-    return this.m
   }
 }

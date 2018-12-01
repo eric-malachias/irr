@@ -1,5 +1,5 @@
 import { RootFinderOptions, IRootFinder } from './definition'
-import { Polynomial } from '../polynomial'
+import { Polynomial } from '../polynomial/polynomial'
 
 export class NewtonRootFinder implements IRootFinder {
   constructor (

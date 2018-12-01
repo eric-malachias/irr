@@ -1,5 +1,6 @@
 import { expect } from 'chai'
-import { Polynomial, Line } from '../src/polynomial'
+import { Polynomial } from '../src/polynomial/polynomial'
+import { Line } from '../src/polynomial/line'
 
 describe('Polynomial', () => {
   describe('#calculate', () => {

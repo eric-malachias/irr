@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import sinon from 'sinon'
-import { Polynomial } from '../src/polynomial'
+import { Polynomial } from '../src/polynomial/polynomial'
 import { irr } from '../src'
 import { RootFinderOptions, RootFinderMethod } from '../src/root-finder/definition'
 
