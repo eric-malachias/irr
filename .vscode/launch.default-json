@@ -13,7 +13,7 @@
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",
-      "console": "integratedTerminal",
+      "console": "externalTerminal",
     },
     {
       "type": "node",
@@ -28,7 +28,7 @@
           "--colors",
           "${workspaceFolder}/tests/**/*.test.ts",
       ],
-      "console": "integratedTerminal",
+      "console": "externalTerminal",
       "internalConsoleOptions": "neverOpen",
       "protocol": "inspector",
   },
