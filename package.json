@@ -1,10 +1,16 @@
 {
   "name": "node-irr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provides easy and customizable ways to calculate internal rate of return.",
   "author": "Eric Malachias",
   "license": "MIT",
-  "keywords": ["irr", "xirr", "internal", "rate", "return"],
+  "keywords": [
+    "irr",
+    "xirr",
+    "internal",
+    "rate",
+    "return"
+  ],
   "main": "dist/index.js",
   "repository": {
     "type": "git",
