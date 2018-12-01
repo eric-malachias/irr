@@ -51,7 +51,11 @@ export class NewtonRootFinder implements IRootFinder {
       root = tangent.findRoot().value
 
       if (!isValidRoot(root)) {
-        break
+        return {
+          converged: false,
+          iterations: iteration,
+          value: root,
+        }
       }
     }
 
