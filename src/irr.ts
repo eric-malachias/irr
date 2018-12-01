@@ -1,10 +1,11 @@
-import { Polynomial, PolynomialSolutionOptions, DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS } from './polynomial'
+import { Polynomial } from './polynomial'
+import { RootFinderOptions, DEFAULT_ROOT_FINDER_OPTIONS } from './root-finder/definition'
 
 export function irr (
   coefficients: number[],
-  options: PolynomialSolutionOptions = DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS,
+  options: RootFinderOptions = DEFAULT_ROOT_FINDER_OPTIONS,
 ): number {
   const polynomial = new Polynomial(coefficients)
 
-  return polynomial.solve(options) - 1
+  return polynomial.findRoot(options) - 1
 }

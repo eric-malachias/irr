@@ -1,6 +1,6 @@
 import moment from 'moment'
-import { PolynomialSolutionOptions, DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS } from './polynomial'
 import { irr } from '.'
+import { RootFinderOptions, DEFAULT_ROOT_FINDER_OPTIONS } from './root-finder/definition'
 
 export type XirrInput = {
   amount: number,
@@ -28,7 +28,7 @@ function transform (inputs: XirrInput[]) {
 
 export function xirr (
   inputs: XirrInput[],
-  options: PolynomialSolutionOptions = DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS,
+  options: RootFinderOptions = DEFAULT_ROOT_FINDER_OPTIONS,
 ) {
   const transformedInputs = transform(inputs)
   const days = transformedInputs.map(input => input.day)

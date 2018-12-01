@@ -1,20 +1,9 @@
-export type PolynomialSolutionOptions = {
-  estimate: number | 'auto',
-  epsilon?: number,
-  maxIterations?: number,
-  relativeEpsilon?: boolean,
-}
-
-export const DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS: PolynomialSolutionOptions = {
-  estimate: 'auto',
-  epsilon: 1e-5,
-  maxIterations: 10,
-  relativeEpsilon: false,
-}
+import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions } from './root-finder/definition'
+import { RootFinderFactory } from './root-finder/factory'
 
 export interface IPolynomial {
   calculate (x: number): number
-  solve (options?: PolynomialSolutionOptions): number
+  findRoot (options?: RootFinderOptions): number
 }
 
 export class Polynomial implements IPolynomial {
@@ -24,22 +13,6 @@ export class Polynomial implements IPolynomial {
     protected readonly coefficients: number[],
   ) {}
 
-  protected autoEstimate (): number {
-    const { length } = this.coefficients
-
-    let positive: number = 0
-    let negative: number = 0
-
-    this.coefficients.forEach(coefficient => {
-      if (coefficient > 0) {
-        positive += coefficient
-      } else {
-        negative -= coefficient
-      }
-    })
-
-    return ((positive / negative) - 1) / length + 1
-  }
   protected getDegree (): number {
     return this.coefficients.length - 1
   }
@@ -74,39 +47,33 @@ export class Polynomial implements IPolynomial {
 
     return this.derivative = new Polynomial(coefficients)
   }
+  public findRoot (options: RootFinderOptions): number {
+    options = Object.assign({}, DEFAULT_ROOT_FINDER_OPTIONS, options)
+
+    const factory = new RootFinderFactory(options)
+    const finder = factory.make(options.method!)
+
+    const root = finder.findRoot(this)
+
+    if (options.fallbackMethod
+      && isNaN(root) || !isFinite(root)
+      && options.method !== options.fallbackMethod) {
+      const fallbackFinder = factory.make(options.fallbackMethod!)
+
+      return fallbackFinder.findRoot(this)
+    }
+
+    return root
+  }
+  public getCoefficients (): number[] {
+    return this.coefficients
+  }
   public getTangentAt (x: number): Line {
     const derivative = this.differentiate()
     const m = derivative.calculate(x)
     const k = this.calculate(x) - m * x
 
     return new Line(m, k)
-  }
-  public solve (options: PolynomialSolutionOptions): number {
-    options = Object.assign({}, DEFAULT_POLYNOMIAL_SOLUTION_OPTIONS, options)
-
-    const epsilon = options.epsilon!
-    const last = options.relativeEpsilon
-      ? Math.abs(this.coefficients[this.coefficients.length - 1]) || 1
-      : 1
-
-    let iteration: number = 0
-    let solution: number = options.estimate === 'auto'
-      ? this.autoEstimate()
-      : options.estimate
-
-    while (iteration++ < options.maxIterations!) {
-      const calculated = Math.abs(this.calculate(solution) / last)
-
-      if (calculated < epsilon) {
-        break
-      }
-
-      const tangent = this.getTangentAt(solution)
-
-      solution = tangent.solve()
-    }
-
-    return solution
   }
 }
 export class Line implements IPolynomial {
@@ -118,7 +85,7 @@ export class Line implements IPolynomial {
   public calculate (x: number): number {
     return this.m * x + this.k
   }
-  public solve (): number {
+  public findRoot (): number {
     return -this.k / this.m
   }
 }
