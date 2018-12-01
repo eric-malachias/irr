@@ -1,13 +1,13 @@
 import { Polynomial } from '../polynomial/polynomial'
 
 export enum RootFinderMethod {
-  Bisection = 'Bisection',
-  Newton = 'Newton',
+  Bisection = 'bisection',
+  Newton = 'newton',
 }
 
 export type RootFinderOptions = {
-  estimate?: number | 'auto',
   epsilon?: number,
+  estimate?: number | 'auto',
   fallbackMethod?: RootFinderMethod | null,
   maxIterations?: number,
   method?: RootFinderMethod,
@@ -27,6 +27,6 @@ export const DEFAULT_ROOT_FINDER_OPTIONS: RootFinderOptions = {
   estimate: 'auto',
   epsilon: 1e-5,
   fallbackMethod: RootFinderMethod.Bisection,
-  maxIterations: 10,
+  maxIterations: 100,
   method: RootFinderMethod.Newton,
 }
