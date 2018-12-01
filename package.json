@@ -1,4 +1,14 @@
 {
+  "name": "node-irr",
+  "version": "0.0.1",
+  "description": "Provides easy and customizable ways to calculate internal rate of return.",
+  "author": "Eric Malachias",
+  "license": "MIT",
+  "keywords": ["irr", "xirr", "internal", "rate", "return"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eric-malachias/irr.git"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
@@ -12,9 +22,14 @@
     "typescript": "^3.1.6"
   },
   "scripts": {
+    "build": "tsc",
     "test": "mocha -r ts-node/register tests/**/*.test.ts"
   },
   "dependencies": {
     "moment": "^2.22.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/eric-malachias/irr/issues"
+  },
+  "homepage": "https://github.com/eric-malachias/irr#readme"
 }
