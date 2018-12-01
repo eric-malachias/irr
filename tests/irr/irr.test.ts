@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 import sinon from 'sinon'
-import { Polynomial } from '../src/polynomial/polynomial'
-import { irr } from '../src'
-import { RootFinderOptions, RootFinderMethod } from '../src/root-finder/definition'
+import { Polynomial } from '../../src/polynomial/polynomial'
+import { irr } from '../../src'
+import { RootFinderOptions, RootFinderMethod } from '../../src/root-finder/definition'
 
 const UNIQUE_IRR_RESULT = Math.PI
 const UNIQUE_COEFFICIENTS = [2, 7, 0, 9]

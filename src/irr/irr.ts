@@ -1,5 +1,5 @@
-import { Polynomial } from './polynomial/polynomial'
-import { RootFinderOptions, DEFAULT_ROOT_FINDER_OPTIONS } from './root-finder/definition'
+import { Polynomial } from '../polynomial/polynomial'
+import { RootFinderOptions, DEFAULT_ROOT_FINDER_OPTIONS } from '../root-finder/definition'
 
 export function irr (
   values: number[],

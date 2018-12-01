@@ -1,5 +1,5 @@
 // tslint:disable no-console
-import { xirr } from './src/xirr'
+import { xirr } from './src/irr/xirr'
 import { RootFinderMethod } from './src/root-finder/definition'
 
 const data = [

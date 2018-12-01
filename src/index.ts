@@ -1,2 +1,2 @@
-export * from './irr'
-export * from './xirr'
+export * from './irr/irr'
+export * from './irr/xirr'
