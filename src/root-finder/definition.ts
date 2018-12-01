@@ -13,8 +13,14 @@ export type RootFinderOptions = {
   method?: RootFinderMethod,
 }
 
+export type Root = {
+  converged: boolean,
+  iterations: number,
+  value: number,
+}
+
 export interface IRootFinder {
-  findRoot (polynomial: Polynomial): number
+  findRoot (polynomial: Polynomial): Root
 }
 
 export const DEFAULT_ROOT_FINDER_OPTIONS: RootFinderOptions = {

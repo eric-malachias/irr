@@ -1,8 +1,7 @@
-import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions } from './../root-finder/definition'
+import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions, Root } from './../root-finder/definition'
 import { RootFinderFactory } from './../root-finder/factory'
 import { IPolynomial } from './definition'
 import { Line } from './line'
-import { isValidRoot } from '../utils/is-valid-root'
 
 export class Polynomial implements IPolynomial {
   protected derivative: Polynomial | null = null
@@ -45,7 +44,7 @@ export class Polynomial implements IPolynomial {
 
     return this.derivative = new Polynomial(coefficients)
   }
-  public findRoot (options: RootFinderOptions): number {
+  public findRoot (options: RootFinderOptions): Root {
     options = Object.assign({}, DEFAULT_ROOT_FINDER_OPTIONS, options)
 
     const factory = new RootFinderFactory(options)
@@ -54,7 +53,7 @@ export class Polynomial implements IPolynomial {
     const root = finder.findRoot(this)
 
     if (options.fallbackMethod
-      && isValidRoot(root)
+      && !root.converged
       && options.method !== options.fallbackMethod) {
       const fallbackFinder = factory.make(options.fallbackMethod!)
 

@@ -6,6 +6,11 @@ export function irr (
   options: RootFinderOptions = DEFAULT_ROOT_FINDER_OPTIONS,
 ): number {
   const polynomial = new Polynomial(values)
+  const root = polynomial.findRoot(options)
 
-  return polynomial.findRoot(options) - 1
+  if (!root.converged) {
+    return NaN
+  }
+
+  return root.value - 1
 }

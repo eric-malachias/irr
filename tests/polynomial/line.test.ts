@@ -36,7 +36,7 @@ describe('Line', () => {
       it(`[${m}, ${k}] -> ${root}`, () => {
         const line = new Line(m, k)
 
-        expect(line.findRoot()).to.equal(root)
+        expect(line.findRoot().value).to.equal(root)
       })
     })
   })

@@ -1,4 +1,4 @@
-import { RootFinderOptions, IRootFinder } from './definition'
+import { RootFinderOptions, IRootFinder, Root } from './definition'
 import { Polynomial } from '../polynomial/polynomial'
 import { isValidRoot } from '../utils/is-valid-root'
 
@@ -26,11 +26,15 @@ export class BisectionRootFinder implements IRootFinder {
     return NaN
   }
 
-  public findRoot (polynomial: Polynomial): number {
+  public findRoot (polynomial: Polynomial): Root {
     const upperLimit = this.findUpperLimit(polynomial)
 
     if (!isValidRoot(upperLimit)) {
-      return NaN
+      return {
+        converged: false,
+        iterations: 0,
+        value: NaN,
+      }
     }
 
     const limits: [number, number] = [0, upperLimit]
@@ -46,7 +50,11 @@ export class BisectionRootFinder implements IRootFinder {
       const calculated = polynomial.calculate(result)
 
       if (Math.abs(calculated) < epsilon) {
-        return result
+        return {
+          converged: true,
+          iterations: iteration,
+          value: result,
+        }
       }
 
       if (calculated < 0) {
@@ -56,6 +64,10 @@ export class BisectionRootFinder implements IRootFinder {
       }
     }
 
-    return result
+    return {
+      converged: false,
+      iterations: iteration - 1,
+      value: result,
+    }
   }
 }

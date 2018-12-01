@@ -1,4 +1,5 @@
 import { IPolynomial } from './definition'
+import { Root } from '../root-finder/definition'
 
 export class Line implements IPolynomial {
   constructor (
@@ -9,8 +10,12 @@ export class Line implements IPolynomial {
   public calculate (x: number): number {
     return this.m * x + this.k
   }
-  public findRoot (): number {
-    return -this.k / this.m
+  public findRoot (): Root {
+    return {
+      converged: true,
+      iterations: 0,
+      value: -this.k / this.m,
+    }
   }
   public getK (): number {
     return this.k
