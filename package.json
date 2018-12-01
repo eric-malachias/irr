@@ -1,6 +1,6 @@
 {
   "name": "node-irr",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Provides easy and customizable ways to calculate internal rate of return.",
   "author": "Eric Malachias",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "return"
   ],
   "main": "dist/index.js",
- "types" : "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eric-malachias/irr.git"
