@@ -26,6 +26,7 @@ const data = [-10, -10, 21]
 
 console.log(irr(data))
 // -> 0.032970974180430046
+// -> ~3.29%
 ```
 
 ### XIRR
@@ -38,12 +39,15 @@ const xirr: (inputs: XirrInput[], options?: RootFinderOptions) => number
 const { xirr } = require('node-irr')
 const data = [
   { amount: -10, date: '20180101' },
-  { amount: 5, date: '20180201' },
-  { amount: 0.1, date: '20180301' },
+  { amount: 10, date: '20180201' },
+  { amount: 0.05, date: '20180301' },
 ]
 
 console.log(xirr(data))
-// -> { days: 60, rate: -0.020988389740661084 }
+// -> { days: 60, rate: 0.00016018311916865535 }
+//                      ^^^^^^^^^^^^^^^^^^^^^^ -> daily rate
+// -> ~0.016% per day
+// -> ~6.02% per year
 ```
 
 ### Using Options
