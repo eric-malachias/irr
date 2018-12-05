@@ -40,4 +40,17 @@ describe('xirr', () => {
 
     sinon.restore()
   })
+  it('groups amounts from the same date', () => {
+    const result = xirr(
+      [
+        { amount: -10, date: '20180101' },
+        { amount: 5, date: '20180201' },
+        { amount: 5, date: '20180201' },
+        { amount: 0.05, date: '20180301' },
+      ],
+      UNIQUE_OPTIONS,
+    )
+
+    expect(result).to.deep.equal({ days: 60, rate: 0.00016018311916865535 })
+  })
 })
