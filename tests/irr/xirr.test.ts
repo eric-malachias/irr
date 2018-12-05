@@ -20,7 +20,7 @@ const UNIQUE_DATA = [
 ]
 const UNIQUE_OPTIONS: RootFinderOptions = {
   estimate: 'auto',
-  epsilon: 1e-5,
+  epsilon: 1e-8,
   fallbackMethod: RootFinderMethod.Bisection,
   maxIterations: 100,
   method: RootFinderMethod.Newton,
@@ -51,6 +51,6 @@ describe('xirr', () => {
       UNIQUE_OPTIONS,
     )
 
-    expect(result).to.deep.equal({ days: 60, rate: 0.00016018311916865535 })
+    expect(result).to.deep.equal({ days: 60, rate: 0.0001601831164046441 })
   })
 })

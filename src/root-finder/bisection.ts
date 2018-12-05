@@ -45,17 +45,19 @@ export class BisectionRootFinder implements IRootFinder {
     let result: number = 0
 
     while (iteration++ < maxIterations) {
+      const delta = Math.abs(limits[0] - limits[1])
+
       result = (limits[0] + limits[1]) / 2
 
-      const calculated = polynomial.calculate(result)
-
-      if (Math.abs(calculated) < epsilon) {
+      if (delta < epsilon) {
         return {
           converged: true,
           iterations: iteration,
           value: result,
         }
       }
+
+      const calculated = polynomial.calculate(result)
 
       if (calculated < 0) {
         limits[1] = result

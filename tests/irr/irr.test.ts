@@ -12,7 +12,7 @@ const UNIQUE_ROOT = {
 const UNIQUE_COEFFICIENTS = [2, 7, 0, 9]
 const UNIQUE_OPTIONS: RootFinderOptions = {
   estimate: 'auto',
-  epsilon: 1e-5,
+  epsilon: 1e-8,
   fallbackMethod: RootFinderMethod.Bisection,
   maxIterations: 100,
   method: RootFinderMethod.Newton,

@@ -17,19 +17,19 @@ describe('BisectionRootFinder', () => {
       [
         [-10, -10, 21],
         {
-          epsilon: 1e-5,
+          epsilon: 1e-8,
           maxIterations: 1000,
         },
         {
           converged: true,
-          iterations: 22,
-          value: 1.032970905303955,
+          iterations: 29,
+          value: 1.0329709686338902,
         },
       ],
       [
         [-10, -10, 15],
         {
-          epsilon: 1e-100,
+          epsilon: 1e-15,
           maxIterations: 1000,
         },
         {
@@ -41,7 +41,7 @@ describe('BisectionRootFinder', () => {
       [
         [-10, -10, 15],
         {
-          epsilon: 1e-100,
+          epsilon: 1e-15,
           maxIterations: 50,
         },
         {
@@ -58,38 +58,31 @@ describe('BisectionRootFinder', () => {
         },
         {
           converged: true,
-          iterations: 30,
-          value: 1.141179634258151,
+          iterations: 29,
+          value: 1.141179632395506,
         },
       ],
       [
         [-10, ...zeros(29), 5, ...zeros(28), 0.1],
         {
-          epsilon: 1e-5,
+          epsilon: 1e-8,
           maxIterations: 1000,
         },
         {
           converged: true,
-          iterations: 21,
-          value: 0.9783663749694824,
+          iterations: 28,
+          value: 0.9783664830029011,
         },
       ],
     ]
 
     cases.forEach(([coefficients, options, expected], index) => {
       it(`passes case #${index + 1}`, () => {
-        const epsilon = options.epsilon!
         const finder = createRootFinder(options)
         const polynomial = new Polynomial(coefficients)
         const root = finder.findRoot(polynomial)
 
         expect(root).to.deep.equal(expected)
-
-        if (root.converged) {
-          const calculated = polynomial.calculate(root.value)
-          // tslint:disable-next-line no-unused-expression
-          expect(calculated <= epsilon).to.be.true
-        }
       })
     })
   })

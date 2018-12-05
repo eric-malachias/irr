@@ -25,7 +25,7 @@ const { irr } = require('node-irr')
 const data = [-10, -10, 21]
 
 console.log(irr(data))
-// -> 0.032970974180430046
+// -> 0.03297097167558927
 // -> ~3.29%
 ```
 
@@ -44,8 +44,8 @@ const data = [
 ]
 
 console.log(xirr(data))
-// -> { days: 60, rate: 0.00016018311916865535 }
-//                      ^^^^^^^^^^^^^^^^^^^^^^ -> daily rate
+// -> { days: 60, rate: 0.0001601831164046441 }
+//                      ^^^^^^^^^^^^^^^^^^^^^ -> daily rate
 // -> ~0.016% per day
 // -> ~6.02% per year
 ```
@@ -55,8 +55,8 @@ console.log(xirr(data))
 #### options.epsilon
 
 - type: number
-- default: 10<sup>-5</sub>
-- description: Acceptable absolute difference between the function calculated at x<sub>0</sub> and at the exact root, |f(x<sub>0</sub>)| ≤ &epsilon;.
+- default: 10<sup>-8</sub>
+- description: Maximum acceptable absolute distance between exact root (x<sub>0</sub>) and approximate root (&lambda;), |x<sub>0</sub> - &lambda;| < &epsilon;.
 
 
 #### options.estimate

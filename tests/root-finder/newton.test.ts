@@ -17,14 +17,14 @@ describe('NewtonRootFinder', () => {
       [
         [-10, -10, 21],
         {
-          epsilon: 1e-5,
+          epsilon: 1e-8,
           estimate: 'auto',
           maxIterations: 1000,
         },
         {
           converged: true,
           iterations: 3,
-          value: 1.03297097418043,
+          value: 1.0329709716755893,
         },
       ],
       [
@@ -63,26 +63,26 @@ describe('NewtonRootFinder', () => {
         {
           converged: true,
           iterations: 6,
-          value: 1.1411796348550995,
+          value: 1.1411796348542165,
         },
       ],
       [
         [-10, ...zeros(29), 5, ...zeros(28), 0.1],
         {
-          epsilon: 1e-5,
+          epsilon: 1e-8,
           estimate: 'auto',
           maxIterations: 1000,
         },
         {
           converged: true,
-          iterations: 5,
-          value: 0.9783665370150569,
+          iterations: 6,
+          value: 0.9783664859233557,
         },
       ],
       [
         [-10, ...zeros(29), 5, ...zeros(28), 0.1],
         {
-          epsilon: 1e-5,
+          epsilon: 1e-8,
           estimate: 0.5,
           maxIterations: 1000,
         },

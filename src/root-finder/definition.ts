@@ -25,7 +25,7 @@ export interface IRootFinder {
 
 export const DEFAULT_ROOT_FINDER_OPTIONS: RootFinderOptions = {
   estimate: 'auto',
-  epsilon: 1e-5,
+  epsilon: 1e-8,
   fallbackMethod: RootFinderMethod.Bisection,
   maxIterations: 100,
   method: RootFinderMethod.Newton,

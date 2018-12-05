@@ -36,19 +36,19 @@ export class NewtonRootFinder implements IRootFinder {
       : estimate!
 
     while (iteration++ < maxIterations) {
-      const calculated = polynomial.calculate(root)
+      const tangent = polynomial.getTangentAt(root)
+      const newRoot = tangent.findRoot().value
+      const delta = Math.abs(newRoot - root)
 
-      if (Math.abs(calculated) < epsilon) {
+      root = newRoot
+
+      if (delta < epsilon) {
         return {
           converged: true,
           iterations: iteration,
           value: root,
         }
       }
-
-      const tangent = polynomial.getTangentAt(root)
-
-      root = tangent.findRoot().value
 
       if (!isValidRoot(root)) {
         return {
