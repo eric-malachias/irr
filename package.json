@@ -1,6 +1,6 @@
 {
   "name": "node-irr",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Node.js package that provides an easy and customizable way to calculate internal rate of return.",
   "author": "Eric Malachias",
   "license": "MIT",
