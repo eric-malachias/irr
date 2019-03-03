@@ -32,7 +32,7 @@ console.log(irr(data))
 ### XIRR
 
 ```typescript
-const xirr: (inputs: XirrInput[], options?: RootFinderOptions) => number
+const xirr: (inputs: XirrInput[], options?: RootFinderOptions) => { days: number, rate: number }
 ```
 
 ```javascript
