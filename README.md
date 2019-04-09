@@ -63,7 +63,7 @@ console.log(xirr(data))
 
 - type: number | 'auto'
 - default: 'auto'
-- description: Used the initial value for the Newton Method (`RootFinderMethod.Newton`).
+- description: Used as the initial value for the Newton Method (`RootFinderMethod.Newton`).
 
 #### options.fallbackMethod
 
