@@ -102,6 +102,8 @@ const convertRate: (rate: number, toInterval: RateInterval | number, fromInterva
 ```
 
 ```javascript
+const { convertRate } = require('node-irr')
+
 const rate = 0.0004 // ~ 0.04% (day)
 const annualRate = convertRate(rate, 'year') // ~15.7%
 // or
