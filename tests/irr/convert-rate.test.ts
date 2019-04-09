@@ -1,66 +1,66 @@
 import { expect } from 'chai'
-import { convertRate, RateFrequency } from '../../src'
+import { convertRate, RateInterval } from '../../src'
 
 const TEST_CASES = [{
   input: 0.002,
   output: 0.014084280560672235,
-  from: RateFrequency.Daily,
-  to: RateFrequency.Weekly,
+  from: RateInterval.Day,
+  to: RateInterval.Week,
 }, {
   input: 0.0015,
   output: 0.045992592326769666,
-  from: RateFrequency.Daily,
-  to: RateFrequency.Monthly,
+  from: RateInterval.Day,
+  to: RateInterval.Month,
 }, {
   input: 0.001,
   output: 0.44025131342950696,
-  from: RateFrequency.Daily,
-  to: RateFrequency.Yearly,
+  from: RateInterval.Day,
+  to: RateInterval.Year,
 }, {
   input: 0.02,
   output: 0.0028329520024581445,
-  from: RateFrequency.Weekly,
-  to: RateFrequency.Daily,
+  from: RateInterval.Week,
+  to: RateInterval.Day,
 }, {
   input: 0.03,
   output: 0.1350544019693063,
-  from: RateFrequency.Weekly,
-  to: RateFrequency.Monthly,
+  from: RateInterval.Week,
+  to: RateInterval.Month,
 }, {
   input: 0.005,
   output: 0.2970139547183892,
-  from: RateFrequency.Weekly,
-  to: RateFrequency.Yearly,
+  from: RateInterval.Week,
+  to: RateInterval.Year,
 }, {
   input: 0.013,
   output: 0.00043063353822936357,
-  from: RateFrequency.Monthly,
-  to: RateFrequency.Daily,
+  from: RateInterval.Month,
+  to: RateInterval.Day,
 }, {
   input: 0.017,
   output: 0.003941072999491313,
-  from: RateFrequency.Monthly,
-  to: RateFrequency.Weekly,
+  from: RateInterval.Month,
+  to: RateInterval.Week,
 }, {
   input: 0.023,
   output: 0.3187228866291123,
-  from: RateFrequency.Monthly,
-  to: RateFrequency.Yearly,
+  from: RateInterval.Month,
+  to: RateInterval.Year,
 }, {
   input: 0.06,
   output: 0.00015965358745284597,
-  from: RateFrequency.Yearly,
-  to: RateFrequency.Daily,
+  from: RateInterval.Year,
+  to: RateInterval.Day,
 }, {
   input: 0.07,
   output: 0.001298405320672158,
-  from: RateFrequency.Yearly,
-  to: RateFrequency.Weekly,
+  from: RateInterval.Year,
+  to: RateInterval.Week,
 }, {
   input: 0.08,
   output: 0.006345613662022576,
-  from: RateFrequency.Yearly,
-  to: RateFrequency.Monthly,
+  from: RateInterval.Year,
+  to: RateInterval.Month,
 }, {
   input: 0.045,
   output: 0.033316406476085136,
@@ -80,5 +80,10 @@ describe('convertRate', () => {
 
       expect(result).to.equal(testCase.output)
     })
+  })
+  it('uses default = day', () => {
+    const result = convertRate(0.001, RateInterval.Month)
+
+    expect(result).to.equal(0.030439087548097543)
   })
 })

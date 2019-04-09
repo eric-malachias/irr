@@ -1,5 +1,5 @@
 export enum RateInterval {
-  Day = 'dai',
+  Day = 'day',
   Week = 'week',
   Month = 'month',
   Year = 'year',
@@ -23,7 +23,7 @@ function parseInterval (interval: RateInterval | number): number {
 export function convertRate (
   rate: number,
   toInterval: RateInterval | number,
-  fromInterval: RateInterval | number = 1,
+  fromInterval: RateInterval | number = RateInterval.Day,
 ): number {
   return (1 + rate) ** (parseInterval(toInterval) / parseInterval(fromInterval)) - 1
 }
