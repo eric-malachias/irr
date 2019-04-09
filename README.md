@@ -86,3 +86,24 @@ console.log(xirr(data))
 ### Newton vs Bisection
 
 The `Newton Method` (1) is considerably faster in number of iterations than the `Bisection Method` (2), but sometimes fails depending on the initial estimate, which is why (1) is used as the primary method, and (2) as a fallback.
+
+### Helper Functions
+
+#### convertRate
+
+```typescript
+export enum RateInterval {
+  Day = 'day',
+  Week = 'week',
+  Month = 'month',
+  Year = 'year',
+}
+const convertRate: (rate: number, toInterval: RateInterval | number, fromInterval: RateInterval | number = RateInterval.Day) => number
+```
+
+```javascript
+const rate = 0.0004 // ~ 0.04% (day)
+const annualRate = convertRate(rate, 'year') // ~15.7%
+// or
+const annualRate = convertRate(rate, 365) // ~15.7%
+```
