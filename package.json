@@ -34,7 +34,7 @@
     "test": "mocha -r ts-node/register tests/**/*.test.ts"
   },
   "dependencies": {
-    "moment": "^2.22.2"
+    "date-fns": "^2.0.1"
   },
   "bugs": {
     "url": "https://github.com/eric-malachias/irr/issues"
