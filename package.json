@@ -31,7 +31,7 @@
     "typescript": "^3.1.6"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./dist && tsc",
     "test": "mocha -r ts-node/register ./**/*.test.ts",
     "dev": "nodemon -e ts,json --exec 'mocha -r ts-node/register ./**/*.test.ts'"
   },
