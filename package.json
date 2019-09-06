@@ -35,9 +35,7 @@
     "test": "mocha -r ts-node/register ./**/*.test.ts",
     "dev": "nodemon -e ts,json --exec 'mocha -r ts-node/register ./**/*.test.ts'"
   },
-  "dependencies": {
-    "date-fns": "^2.0.1"
-  },
+  "dependencies": {},
   "bugs": {
     "url": "https://github.com/eric-malachias/irr/issues"
   },

@@ -1,22 +1,44 @@
-import differenceInDays from 'date-fns/differenceInDays'
 import { XirrInput, InternalXirrInput } from '../definition'
 
-const dateFormat = /(\d{4})(\d{2})(\d{2})/
+const DATE_PATTERNS = [
+  /^(\d{4})[-/]?(\d{2})[-/]?(\d{2})$/,
+]
 
-/**
- * @param input a date string formatted like yyyyMMdd
- */
-function parseDate (input: string): Date {
-  const result = dateFormat.exec(input)
-  if (result === null) {
-    throw new Error('Date format error')
+const DAYS_TO_MS = 24 * 60 * 60 * 1000
+
+function calculateDaysBetweenStrict (_from: Date, _to: Date): number {
+  const fromDays = Math.floor(_from.valueOf() / DAYS_TO_MS)
+  const toDays = Math.floor(_to.valueOf() / DAYS_TO_MS)
+
+  return toDays - fromDays
+}
+
+function parseDate (date: string | Date): Date {
+  if (date instanceof Date) {
+    return date
   }
 
-  const [, year, month, day] = result
+  const pattern = DATE_PATTERNS.find(
+    pattern => pattern.test(date),
+  )
+
+  if (!pattern) {
+    throw new Error(`Invalid date pattern: ${date}`)
+  }
+
+  const [, year, month, day] = date.match(pattern)!
+
   return new Date(
-    Number.parseInt(year, 10),
-    Number.parseInt(month, 10) - 1,
-    Number.parseInt(day, 10),
+    parseInt(year, 10),
+    parseInt(month, 10) - 1,
+    parseInt(day, 10),
+  )
+}
+
+function calculateDaysBetween (from: string | Date, to: string | Date): number {
+  return calculateDaysBetweenStrict(
+    parseDate(from),
+    parseDate(to),
   )
 }
 
@@ -28,10 +50,7 @@ export function transform (inputs: XirrInput[]): InternalXirrInput[] {
   const { date } = inputs[0]
   const transformedInputs = inputs.map(input => ({
     amount: input.amount,
-    day: differenceInDays(
-      parseDate(input.date),
-      parseDate(date),
-    ),
+    day: calculateDaysBetween(date, input.date),
   }))
   const firstDay = Math.min(...transformedInputs.map(({ day }) => day))
 
