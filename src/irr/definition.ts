@@ -1,6 +1,6 @@
 export type XirrInput = {
   amount: number,
-  date: string,
+  date: string | Date,
 }
 
 export type InternalXirrInput = {
