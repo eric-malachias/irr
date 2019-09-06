@@ -2,4 +2,4 @@ sandbox/
 src/
 .vscode/
 index.ts
-dist/**/*.test.js
+dist/**/*.test.*
