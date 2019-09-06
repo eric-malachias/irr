@@ -1,4 +1,4 @@
-import { RootFinderOptions, Root } from '../root-finder/definition'
+import { RootFinderOptions, Root } from '../root-finder'
 
 export interface IPolynomial {
   calculate (x: number): number

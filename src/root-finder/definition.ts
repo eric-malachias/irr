@@ -1,4 +1,4 @@
-import { Polynomial } from '../polynomial/polynomial'
+import { Polynomial } from '../polynomial'
 
 export enum RootFinderMethod {
   Bisection = 'bisection',
