@@ -17,8 +17,8 @@ describe('transform', () => {
       name: 'strings',
       input: [
         { amount: 0, date: '20170101' },
-        { amount: 0, date: '20170321' },
-        { amount: 0, date: '20180211' },
+        { amount: 0, date: '2017-03-21' },
+        { amount: 0, date: '2018/02/11' },
         { amount: 0, date: '20190629' },
         { amount: 0, date: '20190802' },
       ],

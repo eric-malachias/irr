@@ -7,7 +7,7 @@ import { zeros } from '../../utils'
 export function xirr (
   inputs: XirrInput[],
   options: RootFinderOptions = DEFAULT_ROOT_FINDER_OPTIONS,
-) {
+): { days: number, rate: number } {
   const transformedInputs = transform(inputs)
   const days = transformedInputs.map(input => input.day)
   const firstDay = Math.min(...days)

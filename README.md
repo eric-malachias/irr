@@ -38,9 +38,17 @@ const xirr: (inputs: XirrInput[], options?: RootFinderOptions) => { days: number
 ```javascript
 const { xirr } = require('node-irr')
 const data = [
+  // currently accepted formats for strings:
+  // YYYYMMDD, YYYY-MM-DD, YYYY/MM/DD
   { amount: -10, date: '20180101' },
   { amount: 10, date: '20180201' },
   { amount: 0.05, date: '20180301' },
+]
+// or
+const data = [
+  { amount: -10, date: new Date(2018, 0, 1) },
+  { amount: 10, date: new Date(2018, 1, 1) },
+  { amount: 0.05, date: new Date(2018, 2, 1) },
 ]
 
 console.log(xirr(data))
