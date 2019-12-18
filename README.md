@@ -2,6 +2,8 @@
 
 A Node.js package that provides an easy and customizable way to calculate internal rate of return.
 
+![](https://github.com/eric-malachias/irr/workflows/passing/badge.svg)
+
 ## Installation
 
 ```bash
