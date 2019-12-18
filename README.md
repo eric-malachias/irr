@@ -1,6 +1,7 @@
 # node-irr
 
 ![](https://github.com/eric-malachias/irr/workflows/passing/badge.svg)
+[![Downloads](https://img.shields.io/npm/dm/node-irr.svg)](https://www.npmjs.com/package/node-irr)
 
 A Node.js package that provides an easy and customizable way to calculate internal rate of return.
 
