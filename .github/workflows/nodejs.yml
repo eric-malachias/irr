@@ -1,4 +1,4 @@
-name: passing
+name: build
 
 on: [push]
 
