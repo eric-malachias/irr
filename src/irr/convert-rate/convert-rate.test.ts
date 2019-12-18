@@ -1,6 +1,8 @@
 import { expect } from 'chai'
 import { convertRate, RateInterval } from './convert-rate'
 
+const EPSILON = 1e-10
+
 const TEST_CASES = [{
   input: 0.002,
   output: 0.014084280560672235,
@@ -78,12 +80,13 @@ describe('convertRate', () => {
     it(`${testCase.from} -> ${testCase.to}`, () => {
       const result = convertRate(testCase.input, testCase.to, testCase.from)
 
-      expect(result).to.equal(testCase.output)
+      expect(Math.abs(result - testCase.output)).to.be.lessThan(EPSILON)
     })
   })
+
   it('uses default = day', () => {
     const result = convertRate(0.001, RateInterval.Month)
 
-    expect(result).to.equal(0.030439087548097543)
+    expect(Math.abs(result - 0.030439087548097543)).to.be.lessThan(EPSILON)
   })
 })
