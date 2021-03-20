@@ -76,7 +76,7 @@ console.log(xirr(data))
 - default: 'auto'
 - description: Used as the initial value for the Newton Method (`RootFinderMethod.Newton`).
 
-#### options.fallbackMethod
+#### options.method
 
 - type: RootFinderMethod
 - default: `RootFinderMethod.Newton` ('newton')
@@ -88,7 +88,7 @@ console.log(xirr(data))
 - default: 100
 - description: Number of iterations to go through before stopping if an acceptable approximated root is not found.
 
-##### options.method
+#### options.fallbackMethod
 
 - type: RootFinderMethod
 - default: `RootFinderMethod.Bisection` ('bisection')
