@@ -20,6 +20,7 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "test": "jest",
+    "test:coverage": "jest --coverage --collectCoverageFrom=src/**/*.ts",
     "test:watch": "jest --watchAll",
     "dev": "npm run test:watch",
     "lint": "eslint . --ext .ts",

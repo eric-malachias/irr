@@ -3,7 +3,7 @@
     "target": "es2016",
     "module": "commonjs",
     "lib": ["es2017"],
-    "sourceMap": false,
+    "sourceMap": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

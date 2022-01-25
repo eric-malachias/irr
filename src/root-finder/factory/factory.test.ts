@@ -20,5 +20,10 @@ describe('RootFinderFactory', () => {
         expect(instance).toBeInstanceOf(Class)
       })
     })
+
+    test('throw error for invalid values', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect(() => factory.make(null as any)).toThrow()
+    })
   })
 })

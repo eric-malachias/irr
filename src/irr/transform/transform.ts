@@ -45,13 +45,6 @@ export function transform(inputs: XirrInput[]): InternalXirrInput[] {
     amount: input.amount,
     day: calculateDaysBetween(date, input.date),
   }))
-  const firstDay = Math.min(...transformedInputs.map(({ day }) => day))
-
-  if (firstDay !== 0) {
-    transformedInputs.forEach(
-      (_, index) => (transformedInputs[index].day -= firstDay),
-    )
-  }
 
   return transformedInputs
 }

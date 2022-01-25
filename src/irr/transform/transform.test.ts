@@ -72,4 +72,8 @@ describe('transform', () => {
       expect(result).toStrictEqual(output)
     })
   })
+
+  test('fails for invalid date', () => {
+    expect(() => transform([{ amount: 0, date: 'xyz' }])).toThrow()
+  })
 })
