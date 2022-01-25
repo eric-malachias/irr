@@ -3,11 +3,9 @@ import { BisectionRootFinder } from '../bisection'
 import { NewtonRootFinder } from '../newton'
 
 export class RootFinderFactory {
-  constructor (
-    protected readonly options: RootFinderOptions,
-  ) {}
+  constructor(protected readonly options: RootFinderOptions) {}
 
-  public make (method: RootFinderMethod): IRootFinder {
+  public make(method: RootFinderMethod): IRootFinder {
     switch (method) {
       case RootFinderMethod.Bisection:
         return new BisectionRootFinder(this.options)

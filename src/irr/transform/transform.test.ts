@@ -3,9 +3,9 @@ import { XirrInput, InternalXirrInput } from '../definition'
 
 describe('transform', () => {
   const cases: {
-    name: string,
-    input: XirrInput[],
-    output: InternalXirrInput[],
+    name: string
+    input: XirrInput[]
+    output: InternalXirrInput[]
   }[] = [
     {
       name: 'empty input',

@@ -33,10 +33,7 @@ describe('Polynomial', () => {
   })
   describe('#differenciate', () => {
     const cases = [
-      [
-        [1, 2],
-        [1],
-      ],
+      [[1, 2], [1]],
       [
         [3, 4, 5],
         [6, 4],
@@ -48,20 +45,20 @@ describe('Polynomial', () => {
     ]
 
     cases.forEach(([coefficients, derivativeCoefficients]) => {
-      test(`[${coefficients.join(', ')}] -> [${derivativeCoefficients.join(', ')}]`, () => {
+      test(`[${coefficients.join(', ')}] -> [${derivativeCoefficients.join(
+        ', ',
+      )}]`, () => {
         const polynomial = new Polynomial(coefficients)
         const derivative = polynomial.differentiate()
 
-        expect(derivative.getCoefficients()).toStrictEqual(derivativeCoefficients)
+        expect(derivative.getCoefficients()).toStrictEqual(
+          derivativeCoefficients,
+        )
       })
     })
   })
   describe('#getCoefficients', () => {
-    const cases = [
-      [1],
-      [2, 3],
-      [4, 5, 6],
-    ]
+    const cases = [[1], [2, 3], [4, 5, 6]]
 
     test('returns correct coefficients', () => {
       cases.forEach(coefficients => {
@@ -73,21 +70,9 @@ describe('Polynomial', () => {
   })
   describe('#getTangentAt', () => {
     const cases: [number[], number, number[]][] = [
-      [
-        [-1, 0, 1],
-        0,
-        [0, 1],
-      ],
-      [
-        [3, 2, 1],
-        1,
-        [8, -2],
-      ],
-      [
-        [4, -3, -2, 1, 4, 7],
-        -1,
-        [28, 27],
-      ],
+      [[-1, 0, 1], 0, [0, 1]],
+      [[3, 2, 1], 1, [8, -2]],
+      [[4, -3, -2, 1, 4, 7], -1, [28, 27]],
     ]
 
     cases.forEach(([coefficients, x, [m, k]]) => {

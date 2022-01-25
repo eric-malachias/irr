@@ -3,11 +3,9 @@ import { Polynomial } from '../../polynomial'
 import { isValidRoot } from '../../utils'
 
 export class BisectionRootFinder implements IRootFinder {
-  constructor (
-    protected readonly options: RootFinderOptions,
-  ) {}
+  constructor(protected readonly options: RootFinderOptions) {}
 
-  protected findUpperLimit (polynomial: Polynomial): number {
+  protected findUpperLimit(polynomial: Polynomial): number {
     const maxIterations = this.options.maxIterations!
 
     let iteration: number = 0
@@ -26,7 +24,7 @@ export class BisectionRootFinder implements IRootFinder {
     return NaN
   }
 
-  public findRoot (polynomial: Polynomial): Root {
+  public findRoot(polynomial: Polynomial): Root {
     const upperLimit = this.findUpperLimit(polynomial)
 
     if (!isValidRoot(upperLimit)) {

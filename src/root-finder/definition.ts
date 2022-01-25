@@ -6,21 +6,21 @@ export enum RootFinderMethod {
 }
 
 export type RootFinderOptions = {
-  epsilon?: number,
-  estimate?: number | 'auto',
-  fallbackMethod?: RootFinderMethod | null,
-  maxIterations?: number,
-  method?: RootFinderMethod,
+  epsilon?: number
+  estimate?: number | 'auto'
+  fallbackMethod?: RootFinderMethod | null
+  maxIterations?: number
+  method?: RootFinderMethod
 }
 
 export type Root = {
-  converged: boolean,
-  iterations: number,
-  value: number,
+  converged: boolean
+  iterations: number
+  value: number
 }
 
 export interface IRootFinder {
-  findRoot (polynomial: Polynomial): Root
+  findRoot(polynomial: Polynomial): Root
 }
 
 export const DEFAULT_ROOT_FINDER_OPTIONS: RootFinderOptions = {

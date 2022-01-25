@@ -21,7 +21,9 @@
     "build": "rm -rf ./dist && tsc",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "dev": "npm run test:watch"
+    "dev": "npm run test:watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "bugs": {
     "url": "https://github.com/eric-malachias/irr/issues"
@@ -29,7 +31,13 @@
   "homepage": "https://github.com/eric-malachias/irr#readme",
   "devDependencies": {
     "@types/jest": "27.4.0",
+    "@typescript-eslint/eslint-plugin": "5.10.1",
+    "@typescript-eslint/parser": "5.10.1",
+    "eslint": "8.7.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
     "jest": "27.4.7",
+    "prettier": "2.5.1",
     "ts-jest": "27.1.3",
     "ts-node": "10.4.0",
     "typescript": "4.5.5"

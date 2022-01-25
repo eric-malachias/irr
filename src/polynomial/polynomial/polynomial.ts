@@ -1,19 +1,22 @@
-import { DEFAULT_ROOT_FINDER_OPTIONS, RootFinderOptions, Root, RootFinderFactory } from '../../root-finder'
+import {
+  DEFAULT_ROOT_FINDER_OPTIONS,
+  RootFinderOptions,
+  Root,
+  RootFinderFactory,
+} from '../../root-finder'
 import { IPolynomial } from '../definition'
 import { Line } from '../line'
 
 export class Polynomial implements IPolynomial {
   protected derivative: Polynomial | null = null
 
-  constructor (
-    protected readonly coefficients: number[],
-  ) {}
+  constructor(protected readonly coefficients: number[]) {}
 
-  protected getDegree (): number {
+  protected getDegree(): number {
     return this.coefficients.length - 1
   }
 
-  public calculate (x: number): number {
+  public calculate(x: number): number {
     const degree = this.getDegree()
     let accumulatedX: number = 1
     let result: number = 0
@@ -25,7 +28,7 @@ export class Polynomial implements IPolynomial {
 
     return result
   }
-  public differentiate (): Polynomial {
+  public differentiate(): Polynomial {
     if (this.derivative) {
       return this.derivative
     }
@@ -41,9 +44,9 @@ export class Polynomial implements IPolynomial {
       coefficients.push(coefficient * (degree - index))
     })
 
-    return this.derivative = new Polynomial(coefficients)
+    return (this.derivative = new Polynomial(coefficients))
   }
-  public findRoot (options: RootFinderOptions): Root {
+  public findRoot(options: RootFinderOptions): Root {
     options = Object.assign({}, DEFAULT_ROOT_FINDER_OPTIONS, options)
 
     const factory = new RootFinderFactory(options)
@@ -51,9 +54,11 @@ export class Polynomial implements IPolynomial {
 
     const root = finder.findRoot(this)
 
-    if (options.fallbackMethod
-      && !root.converged
-      && options.method !== options.fallbackMethod) {
+    if (
+      options.fallbackMethod &&
+      !root.converged &&
+      options.method !== options.fallbackMethod
+    ) {
       const fallbackFinder = factory.make(options.fallbackMethod!)
 
       return fallbackFinder.findRoot(this)
@@ -61,10 +66,10 @@ export class Polynomial implements IPolynomial {
 
     return root
   }
-  public getCoefficients (): number[] {
+  public getCoefficients(): number[] {
     return this.coefficients
   }
-  public getTangentAt (x: number): Line {
+  public getTangentAt(x: number): Line {
     const derivative = this.differentiate()
     const m = derivative.calculate(x)
     const k = this.calculate(x) - m * x

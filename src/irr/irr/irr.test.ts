@@ -18,7 +18,9 @@ const UNIQUE_OPTIONS: RootFinderOptions = {
 
 describe('irr', () => {
   test('uses Polynomial.prototype.findRoot() for the calculation', () => {
-    const stub = jest.spyOn(Polynomial.prototype, 'findRoot').mockReturnValue(UNIQUE_ROOT)
+    const stub = jest
+      .spyOn(Polynomial.prototype, 'findRoot')
+      .mockReturnValue(UNIQUE_ROOT)
 
     const result = irr(UNIQUE_COEFFICIENTS, UNIQUE_OPTIONS)
 
