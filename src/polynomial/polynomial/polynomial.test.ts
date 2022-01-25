@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { Polynomial } from './polynomial'
 
 describe('Polynomial', () => {
@@ -12,8 +11,8 @@ describe('Polynomial', () => {
       ]
 
       cases.forEach(([x, y]) => {
-        it(`x = ${x}, f(x) = ${y}`, () => {
-          expect(polynomial.calculate(x)).to.equal(y)
+        test(`x = ${x}, f(x) = ${y}`, () => {
+          expect(polynomial.calculate(x)).toBe(y)
         })
       })
     })
@@ -26,8 +25,8 @@ describe('Polynomial', () => {
       ]
 
       cases.forEach(([x, y]) => {
-        it(`x = ${x}, f(x) = ${y}`, () => {
-          expect(polynomial.calculate(x)).to.equal(y)
+        test(`x = ${x}, f(x) = ${y}`, () => {
+          expect(polynomial.calculate(x)).toBe(y)
         })
       })
     })
@@ -49,11 +48,11 @@ describe('Polynomial', () => {
     ]
 
     cases.forEach(([coefficients, derivativeCoefficients]) => {
-      it(`[${coefficients.join(', ')}] -> [${derivativeCoefficients.join(', ')}]`, () => {
+      test(`[${coefficients.join(', ')}] -> [${derivativeCoefficients.join(', ')}]`, () => {
         const polynomial = new Polynomial(coefficients)
         const derivative = polynomial.differentiate()
 
-        expect(derivative.getCoefficients()).to.deep.equal(derivativeCoefficients)
+        expect(derivative.getCoefficients()).toStrictEqual(derivativeCoefficients)
       })
     })
   })
@@ -64,11 +63,11 @@ describe('Polynomial', () => {
       [4, 5, 6],
     ]
 
-    it('returns correct coefficients', () => {
+    test('returns correct coefficients', () => {
       cases.forEach(coefficients => {
         const polynomial = new Polynomial(coefficients)
 
-        expect(polynomial.getCoefficients()).to.deep.equal(coefficients)
+        expect(polynomial.getCoefficients()).toStrictEqual(coefficients)
       })
     })
   })
@@ -92,12 +91,12 @@ describe('Polynomial', () => {
     ]
 
     cases.forEach(([coefficients, x, [m, k]]) => {
-      it(`[${coefficients.join(', ')}](${x}) -> [${m}, ${k}]`, () => {
+      test(`[${coefficients.join(', ')}](${x}) -> [${m}, ${k}]`, () => {
         const polynomial = new Polynomial(coefficients)
         const tangent = polynomial.getTangentAt(x)
 
-        expect(tangent.getM()).to.equal(m)
-        expect(tangent.getK()).to.equal(k)
+        expect(tangent.getM()).toBe(m)
+        expect(tangent.getK()).toBe(k)
       })
     })
   })

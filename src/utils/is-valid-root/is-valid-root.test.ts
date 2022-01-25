@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { isValidRoot } from './is-valid-root'
 
 describe('isValidRoot', () => {
@@ -13,8 +12,8 @@ describe('isValidRoot', () => {
   ]
 
   cases.forEach(([input, expected]) => {
-    it(`${input} -> ${expected}`, () => {
-      expect(isValidRoot(input)).to.equal(expected)
+    test(`${input} -> ${expected}`, () => {
+      expect(isValidRoot(input)).toBe(expected)
     })
   })
 })

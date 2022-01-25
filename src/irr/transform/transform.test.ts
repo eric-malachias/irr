@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { transform } from './transform'
 import { XirrInput, InternalXirrInput } from '../definition'
 
@@ -67,10 +66,10 @@ describe('transform', () => {
   ]
 
   cases.forEach(({ name, input, output }) => {
-    it(name, () => {
+    test(name, () => {
       const result = transform(input)
 
-      expect(result).to.deep.equal(output)
+      expect(result).toStrictEqual(output)
     })
   })
 })

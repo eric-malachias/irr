@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { Line } from './line'
 
 describe('Line', () => {
@@ -14,10 +13,10 @@ describe('Line', () => {
     cases.forEach(([m, k, x]) => {
       const value = m * x + k
 
-      it(`[${m}, ${k}](${x}) -> ${value}`, () => {
+      test(`[${m}, ${k}](${x}) -> ${value}`, () => {
         const line = new Line(m, k)
 
-        expect(line.calculate(x)).to.equal(value)
+        expect(line.calculate(x)).toBe(value)
       })
     })
   })
@@ -33,32 +32,32 @@ describe('Line', () => {
     cases.forEach(([m, k]) => {
       const root = -k / m
 
-      it(`[${m}, ${k}] -> ${root}`, () => {
+      test(`[${m}, ${k}] -> ${root}`, () => {
         const line = new Line(m, k)
 
-        expect(line.findRoot().value).to.equal(root)
+        expect(line.findRoot().value).toBe(root)
       })
     })
   })
   describe('#getK', () => {
     const cases = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-    it('reads k correctly', () => {
+    test('reads k correctly', () => {
       cases.forEach(k => {
         const line = new Line(-1, k)
 
-        expect(line.getK()).to.equal(k)
+        expect(line.getK()).toBe(k)
       })
     })
   })
   describe('#getM', () => {
     const cases = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-    it('reads m correctly', () => {
+    test('reads m correctly', () => {
       cases.forEach(m => {
         const line = new Line(m, -1)
 
-        expect(line.getM()).to.equal(m)
+        expect(line.getM()).toBe(m)
       })
     })
   })

@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { RootFinderFactory } from './factory'
 import { RootFinderMethod } from '../definition'
 import { BisectionRootFinder } from '../bisection'
@@ -14,10 +13,10 @@ describe('RootFinderFactory', () => {
     ]
 
     cases.forEach(([method, Class]) => {
-      it(`RootFinderMethod.${method} -> ${Class.name}`, () => {
+      test(`RootFinderMethod.${method} -> ${Class.name}`, () => {
         const instance = factory.make(method)
 
-        expect(instance).to.be.instanceOf(Class)
+        expect(instance).toBeInstanceOf(Class)
       })
     })
   })

@@ -1,5 +1,3 @@
-import { expect } from 'chai'
-import sinon from 'sinon'
 import { Polynomial } from '../../polynomial'
 import { irr } from './irr'
 import { RootFinderOptions, RootFinderMethod } from '../../root-finder'
@@ -19,17 +17,12 @@ const UNIQUE_OPTIONS: RootFinderOptions = {
 }
 
 describe('irr', () => {
-  it('uses Polynomial.prototype.findRoot() for the calculation', () => {
-    const stub = sinon
-      .stub(Polynomial.prototype, 'findRoot')
-      .returns(UNIQUE_ROOT)
+  test('uses Polynomial.prototype.findRoot() for the calculation', () => {
+    const stub = jest.spyOn(Polynomial.prototype, 'findRoot').mockReturnValue(UNIQUE_ROOT)
 
     const result = irr(UNIQUE_COEFFICIENTS, UNIQUE_OPTIONS)
 
-    expect(result).to.equal(UNIQUE_ROOT.value - 1)
-    // tslint:disable-next-line no-unused-expression
-    expect(stub.calledOnce).to.be.true
-
-    sinon.restore()
+    expect(result).toBe(UNIQUE_ROOT.value - 1)
+    expect(stub).toHaveBeenCalledTimes(1)
   })
 })

@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { RootFinderFactory } from '../factory'
 import { RootFinderMethod, RootFinderOptions, Root } from '../definition'
 import { Polynomial } from '../../polynomial'
@@ -95,18 +94,17 @@ describe('NewtonRootFinder', () => {
     ]
 
     cases.forEach(([coefficients, options, expected], index) => {
-      it(`passes case #${index + 1}`, () => {
+      test(`passes case #${index + 1}`, () => {
         const epsilon = options.epsilon!
         const finder = createRootFinder(options)
         const polynomial = new Polynomial(coefficients)
         const root = finder.findRoot(polynomial)
 
-        expect(root).to.deep.equal(expected)
+        expect(root).toStrictEqual(expected)
 
         if (root.converged) {
           const calculated = polynomial.calculate(root.value)
-          // tslint:disable-next-line no-unused-expression
-          expect(calculated <= epsilon).to.be.true
+          expect(calculated <= epsilon).toBe(true)
         }
       })
     })

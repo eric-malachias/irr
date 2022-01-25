@@ -1,5 +1,3 @@
-import { expect } from 'chai'
-import sinon from 'sinon'
 import { Polynomial } from '../../polynomial'
 import { xirr } from '../..'
 import { RootFinderOptions, RootFinderMethod } from '../../root-finder'
@@ -27,20 +25,17 @@ const UNIQUE_OPTIONS: RootFinderOptions = {
 }
 
 describe('xirr', () => {
-  it('uses Polynomial.prototype.findRoot() for the calculation', () => {
-    const stub = sinon
-      .stub(Polynomial.prototype, 'findRoot')
-      .returns(UNIQUE_ROOT)
+  test('uses Polynomial.prototype.findRoot() for the calculation', () => {
+    const stub = jest.spyOn(Polynomial.prototype, 'findRoot').mockReturnValue(UNIQUE_ROOT)
 
     const result = xirr(UNIQUE_DATA, UNIQUE_OPTIONS)
 
-    expect(result).to.deep.equal(UNIQUE_XIRR_RESULT)
-    // tslint:disable-next-line no-unused-expression
-    expect(stub.calledOnce).to.be.true
+    expect(result).toStrictEqual(UNIQUE_XIRR_RESULT)
+    expect(stub).toHaveBeenCalledTimes(1)
 
-    sinon.restore()
+    jest.restoreAllMocks()
   })
-  it('groups amounts from the same date', () => {
+  test('groups amounts from the same date', () => {
     const result = xirr(
       [
         { amount: -10, date: '20180101' },
@@ -51,6 +46,6 @@ describe('xirr', () => {
       UNIQUE_OPTIONS,
     )
 
-    expect(result).to.deep.equal({ days: 60, rate: 0.0001601831164046441 })
+    expect(result).toStrictEqual({ days: 60, rate: 0.0001601831164046441 })
   })
 })

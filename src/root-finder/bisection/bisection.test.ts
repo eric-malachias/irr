@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { RootFinderFactory } from '../factory'
 import { RootFinderMethod, RootFinderOptions, Root } from '../definition'
 import { Polynomial } from '../../polynomial'
@@ -77,12 +76,12 @@ describe('BisectionRootFinder', () => {
     ]
 
     cases.forEach(([coefficients, options, expected], index) => {
-      it(`passes case #${index + 1}`, () => {
+      test(`passes case #${index + 1}`, () => {
         const finder = createRootFinder(options)
         const polynomial = new Polynomial(coefficients)
         const root = finder.findRoot(polynomial)
 
-        expect(root).to.deep.equal(expected)
+        expect(root).toStrictEqual(expected)
       })
     })
   })
