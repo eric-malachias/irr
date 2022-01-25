@@ -2,8 +2,12 @@ import { RootFinderMethod, IRootFinder, RootFinderOptions } from '../definition'
 import { BisectionRootFinder } from '../bisection'
 import { NewtonRootFinder } from '../newton'
 
+export interface IRootFinderConstructor {
+  new (options: RootFinderOptions): IRootFinder
+}
+
 export class RootFinderFactory {
-  constructor(protected readonly options: RootFinderOptions) {}
+  constructor(private readonly options: RootFinderOptions) {}
 
   public make(method: RootFinderMethod): IRootFinder {
     switch (method) {

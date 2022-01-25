@@ -1,9 +1,4 @@
-import {
-  DEFAULT_ROOT_FINDER_OPTIONS,
-  RootFinderOptions,
-  Root,
-  RootFinderFactory,
-} from '../../root-finder'
+import { RootFinderOptions, Root, RootFinderFactory } from '../../root-finder'
 import { IPolynomial } from '../definition'
 import { Line } from '../line'
 
@@ -28,6 +23,7 @@ export class Polynomial implements IPolynomial {
 
     return result
   }
+
   public differentiate(): Polynomial {
     if (this.derivative) {
       return this.derivative
@@ -46,11 +42,10 @@ export class Polynomial implements IPolynomial {
 
     return (this.derivative = new Polynomial(coefficients))
   }
-  public findRoot(options: RootFinderOptions): Root {
-    options = Object.assign({}, DEFAULT_ROOT_FINDER_OPTIONS, options)
 
+  public findRoot(options: RootFinderOptions): Root {
     const factory = new RootFinderFactory(options)
-    const finder = factory.make(options.method!)
+    const finder = factory.make(options.method)
 
     const root = finder.findRoot(this)
 
@@ -59,16 +54,18 @@ export class Polynomial implements IPolynomial {
       !root.converged &&
       options.method !== options.fallbackMethod
     ) {
-      const fallbackFinder = factory.make(options.fallbackMethod!)
+      const fallbackFinder = factory.make(options.fallbackMethod)
 
       return fallbackFinder.findRoot(this)
     }
 
     return root
   }
+
   public getCoefficients(): number[] {
     return this.coefficients
   }
+
   public getTangentAt(x: number): Line {
     const derivative = this.differentiate()
     const m = derivative.calculate(x)

@@ -1,13 +1,14 @@
-import { RootFinderFactory } from './factory'
+import { IRootFinderConstructor, RootFinderFactory } from './factory'
 import { RootFinderMethod } from '../definition'
 import { BisectionRootFinder } from '../bisection'
 import { NewtonRootFinder } from '../newton'
+import { getRootFinderOptionsWithDefaults } from '..'
 
 describe('RootFinderFactory', () => {
-  const factory = new RootFinderFactory({})
+  const factory = new RootFinderFactory(getRootFinderOptionsWithDefaults({}))
 
   describe('#make', () => {
-    const cases: [RootFinderMethod, any][] = [
+    const cases: [RootFinderMethod, IRootFinderConstructor][] = [
       [RootFinderMethod.Bisection, BisectionRootFinder],
       [RootFinderMethod.Newton, NewtonRootFinder],
     ]

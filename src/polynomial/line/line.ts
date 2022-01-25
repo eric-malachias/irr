@@ -7,6 +7,7 @@ export class Line implements IPolynomial {
   public calculate(x: number): number {
     return this.m * x + this.k
   }
+
   public findRoot(): Root {
     return {
       converged: true,
@@ -14,9 +15,11 @@ export class Line implements IPolynomial {
       value: -this.k / this.m,
     }
   }
+
   public getK(): number {
     return this.k
   }
+
   public getM(): number {
     return this.m
   }

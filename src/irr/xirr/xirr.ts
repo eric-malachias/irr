@@ -1,15 +1,12 @@
 import { irr } from '../irr'
-import {
-  RootFinderOptions,
-  DEFAULT_ROOT_FINDER_OPTIONS,
-} from '../../root-finder'
+import { RootFinderOptions } from '../../root-finder'
 import { XirrInput } from '../definition'
 import { transform } from '../transform'
 import { zeros } from '../../utils'
 
 export function xirr(
   inputs: XirrInput[],
-  options: RootFinderOptions = DEFAULT_ROOT_FINDER_OPTIONS,
+  options: Partial<RootFinderOptions> = {},
 ): { days: number; rate: number } {
   const transformedInputs = transform(inputs)
   const days = transformedInputs.map(input => input.day)

@@ -1,15 +1,15 @@
 import { Polynomial } from '../../polynomial'
 import {
   RootFinderOptions,
-  DEFAULT_ROOT_FINDER_OPTIONS,
+  getRootFinderOptionsWithDefaults,
 } from '../../root-finder'
 
 export function irr(
   values: number[],
-  options: RootFinderOptions = DEFAULT_ROOT_FINDER_OPTIONS,
+  options: Partial<RootFinderOptions> = {},
 ): number {
   const polynomial = new Polynomial(values)
-  const root = polynomial.findRoot(options)
+  const root = polynomial.findRoot(getRootFinderOptionsWithDefaults(options))
 
   if (!root.converged) {
     return NaN

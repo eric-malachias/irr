@@ -6,11 +6,11 @@ export enum RootFinderMethod {
 }
 
 export type RootFinderOptions = {
-  epsilon?: number
-  estimate?: number | 'auto'
-  fallbackMethod?: RootFinderMethod | null
-  maxIterations?: number
-  method?: RootFinderMethod
+  epsilon: number
+  estimate: number | 'auto'
+  fallbackMethod: RootFinderMethod | null
+  maxIterations: number
+  method: RootFinderMethod
 }
 
 export type Root = {
@@ -29,4 +29,10 @@ export const DEFAULT_ROOT_FINDER_OPTIONS: RootFinderOptions = {
   fallbackMethod: RootFinderMethod.Bisection,
   maxIterations: 100,
   method: RootFinderMethod.Newton,
+}
+
+export function getRootFinderOptionsWithDefaults(
+  options: Partial<RootFinderOptions>,
+): RootFinderOptions {
+  return Object.assign({}, DEFAULT_ROOT_FINDER_OPTIONS, options)
 }

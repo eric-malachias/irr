@@ -1,7 +1,7 @@
 import { isValidRoot } from './is-valid-root'
 
 describe('isValidRoot', () => {
-  const cases: [any, boolean][] = [
+  const cases: [number, boolean][] = [
     [5, true],
     [0.01, true],
     [NaN, false],

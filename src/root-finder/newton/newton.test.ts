@@ -2,9 +2,12 @@ import { RootFinderFactory } from '../factory'
 import { RootFinderMethod, RootFinderOptions, Root } from '../definition'
 import { Polynomial } from '../../polynomial'
 import { zeros } from '../../utils'
+import { getRootFinderOptionsWithDefaults } from '..'
 
-const createRootFinder = (options: RootFinderOptions) => {
-  const factory = new RootFinderFactory(options)
+const createRootFinder = (options: Partial<RootFinderOptions>) => {
+  const factory = new RootFinderFactory(
+    getRootFinderOptionsWithDefaults(options),
+  )
   const instance = factory.make(RootFinderMethod.Newton)
 
   return instance
@@ -12,7 +15,7 @@ const createRootFinder = (options: RootFinderOptions) => {
 
 describe('NewtonRootFinder', () => {
   describe('#findRoot', () => {
-    const cases: [number[], RootFinderOptions, Root][] = [
+    const cases: [number[], Partial<RootFinderOptions>, Root][] = [
       [
         [-10, -10, 21],
         {
