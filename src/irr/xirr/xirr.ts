@@ -15,7 +15,9 @@ export function xirr(
   const totalDays = lastDay - firstDay + 1
   const coefficients: number[] = zeros(totalDays)
 
-  transformedInputs.forEach(({ amount, day }) => (coefficients[day] += amount))
+  transformedInputs.forEach(
+    ({ amount, day }) => (coefficients[day - firstDay] += amount),
+  )
 
   return {
     days: totalDays,
