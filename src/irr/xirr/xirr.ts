@@ -13,6 +13,12 @@ export function xirr(
   const firstDay = Math.min(...days)
   const lastDay = Math.max(...days)
   const totalDays = lastDay - firstDay + 1
+  if (!isFinite(totalDays)) {
+    return {
+      days: totalDays,
+      rate: NaN,
+    }
+  }
   const coefficients: number[] = zeros(totalDays)
 
   transformedInputs.forEach(
